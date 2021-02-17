@@ -1,37 +1,3 @@
-<?php
-session_start();
-error_reporting(0);
-include_once('includes/dbconnection.php');
-if (strlen($_SESSION['fosuid']==0)) {
-  header('location:logout.php');
-  } else{ 
-//placing order
-
-if(isset($_POST['placeorder'])){
-//getting address
-$fnaobno=$_POST['flatbldgnumber'];
-$street=$_POST['streename'];
-$area=$_POST['area'];
-$lndmark=$_POST['landmark'];
-$city=$_POST['city'];
-$userid=$_SESSION['fosuid'];
-
-$provider=$_POST['searchfood'];
-//genrating order number
-$orderno= mt_rand(100000000, 999999999);
-$query="update tblorders set OrderNumber='$orderno',IsOrderPlaced='1' where UserId='$userid' and IsOrderPlaced is null;";
-$query.="insert into tblorderaddresses(UserId,Ordernumber,Flatnobuldngno,StreetName,Area,Landmark,City,Provider) values('$userid','$orderno','$fnaobno','$street','$area','$lndmark','$city','$provider');";
-
-$result = mysqli_multi_query($con, $query);
-if ($result) {
-
-echo '<script>alert("Your order placed successfully. Order number is "+"'.$orderno.'")</script>';
-echo "<script>window.location.href='my-order.php'</script>";
-
-}
-}    
-
-    ?>
 <!DOCTYPE html>
 <html lang="en">
 

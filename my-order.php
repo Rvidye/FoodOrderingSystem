@@ -1,12 +1,3 @@
-
-<?php
-session_start();
-error_reporting(0);
-include_once('includes/dbconnection.php');
-if (strlen($_SESSION['fosuid']==0)) {
-  header('location:logout.php');
-  } else {
-  ?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -86,25 +77,11 @@ $uid=$_SESSION['fosuid'];
                                         </div>
                                         <!-- end:Logo -->
                                         <div class="entry-dscr">
-         <h5><a href="order-details.php?orderid=<?php echo $row['Ordernumber'];?>">Order # <?php echo $row['Ordernumber'];?></a></h5> 
+         <h5><a href="order-details.php?orderid=<?php echo $row['Ordernumber'];?>">Order # </a></h5> 
          <p><b>Order Date :</b> <?php echo $row['OrderTime']?> </p>
                                             <ul class="list-inline">
-                                                <li class="list-inline-item"><i class="fa fa-check"></i> 
-                                                    <?php $status=$row['OrderFinalStatus'];
-if($status==''){
- echo "Waiting for Restaurant confirmation";   
-} else{
-echo $status;
-}
-
-                                                    ?></li>
+                                                <li class="list-inline-item"><i class="fa fa-check"></i> </li>
                                                 <li class="list-inline-item"><i class="fa fa-motorcycle"></i> 
-<?php    
-
-$link = "http"; 
-$link .= "://"; 
-$link .= $_SERVER['HTTP_HOST']; 
-?>
  <a href="javascript:void(0);" onClick="popUpWindow('trackorder.php?oid=<?php echo htmlentities($row['Ordernumber']);?>');" title="Track order">Track Order</a></li>
                                             </ul>
                                         </div>

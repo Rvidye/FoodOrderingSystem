@@ -1,33 +1,3 @@
-<?php
-session_start();
-error_reporting(0);
-include_once('includes/dbconnection.php');
-if(isset($_POST['submit']))
-  {
-    
-    $oid=$_GET['oid'];
-    $ressta="Order Cancelled";
-    $remark=$_POST['restremark'];
-    $canclbyuser=1;
- 
-    
-    $query=mysqli_query($con,"insert into tblfoodtracking(OrderId,remark,status,OrderCanclledByUser) value('$oid','$remark','$ressta','$canclbyuser')"); 
-   $query=mysqli_query($con, "update   tblorderaddresses set OrderFinalStatus='$ressta' where Ordernumber='$oid'");
-
-   if ($query) {
-    $msg="Order Has been Cancelled By User!";
-  exit($msg);
-  }
-  else
-    {
-      $msg="Something Went Wrong. Please try again";
-    }
-
-  
-}
-
- ?>
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>

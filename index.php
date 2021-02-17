@@ -1,20 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-if(isset($_POST['submit']))
-{
-$foodid=$_POST['foodid'];
-$userid= $_SESSION['fosuid'];
-$query=mysqli_query($con,"insert into tblorders(UserId,FoodId) values('$userid','$foodid') ");
-if($query)
-{
- echo "<script>alert('Food has been added in to the cart');</script>";   
-} else {
- echo "<script>alert('Something went wrong.');</script>";      
-}
-}
-  ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

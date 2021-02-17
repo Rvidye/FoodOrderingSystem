@@ -1,35 +1,3 @@
-<?php 
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-if(isset($_POST['submit']))
-  {
-    $fname=$_POST['firstname'];
-    $lname=$_POST['lastname'];
-    $contno=$_POST['mobilenumber'];
-    $email=$_POST['email'];
-    $password=md5($_POST['password']);
-
-    $ret=mysqli_query($con, "select Email from tbluser where Email='$email' || MobileNumber='$contno'");
-    $result=mysqli_fetch_array($ret);
-    if($result>0){
-$msg="This email or Contact Number already associated with another account";
-    }
-    else{
-    $query=mysqli_query($con, "insert into tbluser(FirstName, LastName, MobileNumber, Email, Password) value('$fname', '$lname','$contno', '$email', '$password' )");
-    if ($query) {
-    $msg="You have successfully registered";
-  }
-  else
-    {
-      $msg="Something Went Wrong. Please try again";
-    }
-}
-}
-
- ?>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -87,9 +55,7 @@ return true;
                      <div class="col-md-8">
                         <div class="widget">
                            <div class="widget-body">
-                              <p style="font-size:16px; color:red" align="center"> <?php if($msg){
-    echo $msg;
-  }  ?> </p>
+                              <p style="font-size:16px; color:red" align="center"> </p>
                               <form action="" name="signup" method="post" onsubmit="return checkpass();">
                                  <div class="row">
                                     <div class="form-group col-sm-6">

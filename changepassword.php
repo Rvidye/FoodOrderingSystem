@@ -1,33 +1,3 @@
-<?php
-session_start();
-error_reporting(0);
-include('includes/dbconnection.php');
-if (strlen($_SESSION['fosuid']==0)) {
-  header('location:logout.php');
-  } else{
-if(isset($_POST['submit']))
-{
-$userid=$_SESSION['fosuid'];
-$cpassword=md5($_POST['currentpassword']);
-$newpassword=md5($_POST['newpassword']);
-$query=mysqli_query($con,"select ID from tbluser where ID='$userid' and   Password='$cpassword'");
-$row=mysqli_fetch_array($query);
-if($row>0){
-$ret=mysqli_query($con,"update tbluser set Password='$newpassword' where ID='$userid'");
-$msg= "Your password successully changed"; 
-} else {
-
-$msg="Your current password is wrong";
-}
-
-
-
-}
-
-  
-  ?>
-
-
 
 <!DOCTYPE html>
 <html lang="en">
